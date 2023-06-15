@@ -11,7 +11,7 @@ struct NewsAPI {
     static let shared = NewsAPI()
     private init() {}
     
-    private let apiKey = "0e83222d1e2049778e4341ffd90550b9"
+    private let apiKey = "284ddc633ae946f09d56eff7afef5cea"
     private let session = URLSession.shared
     private let jsonDecoder:JSONDecoder = {
         let decoder = JSONDecoder()
@@ -20,7 +20,13 @@ struct NewsAPI {
     }()
     
     func fetch(from category: Category) async throws -> [Article] {
-        let url = generatorNewsURL(from: category)
+        try await fetchArticles(from: generatorNewsURL(from: category))
+    }
+    
+    func search(for query: String) async throws -> [Article] {
+        try await fetchArticles(from: generateSearchURL(from: query))
+    }
+    private func fetchArticles(from url: URL) async throws -> [Article] {
         let (data, response) = try await session.data(from: url)
         
         guard let response = response as? HTTPURLResponse else {
@@ -37,7 +43,18 @@ struct NewsAPI {
                 throw generateError(description: apiResponse.message ?? "An error occured")
             }
         default:
-            throw generateError(description: "A server error occured")        }
+            throw generateError(description: "A server error occured")
+        }
+    }
+    
+    private func generateSearchURL(from query: String) -> URL {
+        
+        let percentEncodedString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
+        var url = "https://newsapi.org/v2/everything?"
+        url += "apiKey=\(apiKey)"
+        url += "&language=en"
+        url += "&q=\(percentEncodedString)"
+        return URL(string: url)!
     }
     
     private func generateError(code: Int = 1, description: String) -> Error {

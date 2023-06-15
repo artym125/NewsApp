@@ -12,7 +12,15 @@ struct ContentView: View {
         TabView {
             NewsTabView()
                 .tabItem{
-                    Label("News", systemImage: "newspaper")
+                    Label("News", systemImage: "newspaper.circle")
+                }
+            SearchTabView()
+                .tabItem{
+                    Label("Search", systemImage: "magnifyingglass.circle")
+                }
+            SettingsView()
+                .tabItem{
+                    Label("Settings", systemImage: "gearshape")
                 }
         }
     }

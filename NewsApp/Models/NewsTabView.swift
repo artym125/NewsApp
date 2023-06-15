@@ -21,9 +21,10 @@ struct NewsTabView: View {
                 }
                 .onAppear{
                     loadTask()
-
                 }
+                .onChange(of: articleNewsVM.selectedCategory){ newValue in loadTask() }
                 .navigationTitle(articleNewsVM.selectedCategory.text)
+                .navigationBarItems(trailing: menu)
         }
     }
     @ViewBuilder
@@ -57,6 +58,20 @@ struct NewsTabView: View {
             await articleNewsVM.loadArticles()
         }
     }
+    private var menu: some View {
+        Menu {
+            Picker("Category", selection: $articleNewsVM.selectedCategory) {
+                ForEach(Category.allCases) {
+                    Text($0.text).tag($0)
+                }
+            }
+        } label: {
+            Image(systemName: "text.line.first.and.arrowtriangle.forward")
+                .imageScale(.large)
+        }
+    }
+
+    
         
 }
 

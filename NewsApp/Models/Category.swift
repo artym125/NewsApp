@@ -19,7 +19,7 @@ case health
     
     var text: String {
         if self == .general {
-            return "Top HeadLines"
+            return "Top headlines"
         } else {
             return rawValue.capitalized
         }
