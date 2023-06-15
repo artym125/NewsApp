@@ -24,6 +24,7 @@
 		5A8F312F2A3B639F0098F953 /* ArticleSerchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F312E2A3B639F0098F953 /* ArticleSerchVM.swift */; };
 		5A8F31312A3B65BD0098F953 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F31302A3B65BD0098F953 /* SearchTabView.swift */; };
 		5A8F31332A3B7BF70098F953 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F31322A3B7BF70098F953 /* SettingsView.swift */; };
+		5A8F31352A3BBE340098F953 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F31342A3BBE340098F953 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		5A8F312E2A3B639F0098F953 /* ArticleSerchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSerchVM.swift; sourceTree = "<group>"; };
 		5A8F31302A3B65BD0098F953 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		5A8F31322A3B7BF70098F953 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5A8F31342A3BBE340098F953 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				5A8F31222A3A90660098F953 /* BrowserWebView.swift */,
 				5A8F31302A3B65BD0098F953 /* SearchTabView.swift */,
 				5A8F31322A3B7BF70098F953 /* SettingsView.swift */,
+				5A8F31342A3BBE340098F953 /* CalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				5A8F311F2A3A7F070098F953 /* ArticleRowView.swift in Sources */,
 				5A8F311A2A3A74950098F953 /* APIResponse.swift in Sources */,
 				5A8F31232A3A90660098F953 /* BrowserWebView.swift in Sources */,
+				5A8F31352A3BBE340098F953 /* CalendarView.swift in Sources */,
 				5A8F31312A3B65BD0098F953 /* SearchTabView.swift in Sources */,
 				5A8F31282A3A99890098F953 /* Category.swift in Sources */,
 				5A8F31332A3B7BF70098F953 /* SettingsView.swift in Sources */,

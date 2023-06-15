@@ -20,18 +20,18 @@ struct NewsAPI {
     }()
     
     func fetch(from category: Category) async throws -> [Article] {
-        try await fetchArticles(from: generatorNewsURL(from: category))
+        try await fetchArticles(from: generateNewsURL(from: category))
     }
     
-    func search(for query: String) async throws -> [Article] {
-        try await fetchArticles(from: generateSearchURL(from: query))
+    func search(for query: String, startDate: Date?, endDate: Date?) async throws -> [Article] {
+        try await fetchArticles(from: generateSearchURL(from: query, startDate: startDate, endDate: endDate))
     }
+    
     private func fetchArticles(from url: URL) async throws -> [Article] {
         let (data, response) = try await session.data(from: url)
         
         guard let response = response as? HTTPURLResponse else {
             throw generateError(description: "Bad Response")
-            
         }
         
         switch response.statusCode {
@@ -47,25 +47,46 @@ struct NewsAPI {
         }
     }
     
-    private func generateSearchURL(from query: String) -> URL {
+    private func generateSearchURL(from query: String, startDate: Date?, endDate: Date?) -> URL {
+        var components = URLComponents(string: "https://newsapi.org/v2/everything")
         
-        let percentEncodedString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
-        var url = "https://newsapi.org/v2/everything?"
-        url += "apiKey=\(apiKey)"
-        url += "&language=en"
-        url += "&q=\(percentEncodedString)"
-        return URL(string: url)!
+        let apiKeyQueryItem = URLQueryItem(name: "apiKey", value: apiKey)
+        let languageQueryItem = URLQueryItem(name: "language", value: "en")
+        let queryQueryItem = URLQueryItem(name: "q", value: query)
+        
+        components?.queryItems = [apiKeyQueryItem, languageQueryItem, queryQueryItem]
+        
+        if let startDate = startDate, let endDate = endDate {
+            let startDateQueryItem = URLQueryItem(name: "from", value: startDate.formattedString())
+            let endDateQueryItem = URLQueryItem(name: "to", value: endDate.formattedString())
+            components?.queryItems?.append(startDateQueryItem)
+            components?.queryItems?.append(endDateQueryItem)
+        }
+        
+        return components?.url ?? URL(string: "")!
+    }
+    
+    private func generateNewsURL(from category: Category) -> URL {
+        var components = URLComponents(string: "https://newsapi.org/v2/top-headlines")
+        
+        let apiKeyQueryItem = URLQueryItem(name: "apiKey", value: apiKey)
+        let languageQueryItem = URLQueryItem(name: "language", value: "en")
+        let categoryQueryItem = URLQueryItem(name: "category", value: category.rawValue)
+        
+        components?.queryItems = [apiKeyQueryItem, languageQueryItem, categoryQueryItem]
+        
+        return components?.url ?? URL(string: "")!
     }
     
     private func generateError(code: Int = 1, description: String) -> Error {
         NSError(domain: "NewsAPI", code: code, userInfo: [NSLocalizedDescriptionKey: description])
     }
-    
-    private func generatorNewsURL(from category: Category) -> URL {
-        var url = "https://newsapi.org/v2/top-headlines?"
-        url += "apiKey=\(apiKey)"
-        url += "&language=en"
-        url += "&category=\(category.rawValue)"
-        return URL(string: url)!
+}
+
+extension Date {
+    func formattedString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
     }
 }
