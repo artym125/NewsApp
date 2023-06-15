@@ -11,13 +11,14 @@ struct NewsAPI {
     static let shared = NewsAPI()
     private init() {}
     
-    private let apiKey = "apiKey"
+    private let apiKey = "0e83222d1e2049778e4341ffd90550b9"
     private let session = URLSession.shared
     private let jsonDecoder:JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return decoder
     }()
+    
     func fetch(from category: Category) async throws -> [Article] {
         let url = generatorNewsURL(from: category)
         let (data, response) = try await session.data(from: url)

@@ -36,6 +36,13 @@ class ArticleNewsViewModel:ObservableObject {
             
         } catch {
             phase = .failure(error)
+            do {
+                let articles = try await newsAPI.fetch(from: selectedCategory)
+                phase = .success(articles)
+            } catch {
+                print(error.localizedDescription)
+                phase = .failure(error)
+            }
         }
     }
 }
