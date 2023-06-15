@@ -28,7 +28,7 @@ git clone https://github.com/your-username/newsApp.git
 ## Usage
 Upon launching the News App, users will be presented with a news feed consisting of the latest articles. They can scroll through the feed to view article previews and tap on an article to open it in the Safari browser within the app.
 
-Additionally, the app provides a filter option that allows users to narrow down the news feed based on seven categories. Users can select a specific category, such as "Politics," "Sports," "Entertainment," "Technology," "Business," "Health," or "Science," to view articles only related to that category.
+Additionally, the app provides a filter option that allows users to narrow down the news feed based on six categories. Users can select a specific category, such as "Sports," "Entertainment," "Technology," "Business," "Health," or "Science," to view articles only related to that category.
 
 The category filter enhances the user experience by providing a more personalized and focused news browsing experience. Users can easily switch between categories to explore articles that align with their interests and preferences.
 
@@ -43,3 +43,8 @@ To share an interesting article, users can tap the share button located in the n
 ## Contributing
 
 Contributions to NewsApp are welcome! If you encounter any issues or have suggestions for new features, please open an issue or submit a pull request.
+
+## Скріншоти
+
+![Головний екран](screenshots/home_screen.png)
+![Детальна інформація](screenshots/detail_screen.png)
