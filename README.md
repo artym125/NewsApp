@@ -43,8 +43,3 @@ To share an interesting article, users can tap the share button located in the n
 ## Contributing
 
 Contributions to NewsApp are welcome! If you encounter any issues or have suggestions for new features, please open an issue or submit a pull request.
-
-## Скріншоти
-
-![Головний екран](screenshots/home_screen.png)
-![Детальна інформація](screenshots/detail_screen.png)
