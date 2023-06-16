@@ -19,7 +19,7 @@ To use NewsApp, follow the steps below:
 
 1. Clone the repository by running the following command in your terminal:
 ```bash
-git clone https://github.com/your-username/newsApp.git
+git clone https://github.com/artym125/newsApp.git
 ```
 2. Open the `NewsApp.xcodeproj` file in Xcode.
 
